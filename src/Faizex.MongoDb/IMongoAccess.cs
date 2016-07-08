@@ -24,5 +24,11 @@ namespace Faizex.MongoDb
     /// <param name="collectionName">The collection name.</param>
     /// <returns>IMongoProvider{T}</returns>
     IMongoProvider<T> Provider<T>(string collectionName) where T : IMongoDocument;
+
+    /// <summary>
+    /// Creates and registers a class map.
+    /// </summary>
+    /// <typeparam name="T">The class to register.</typeparam>
+    void RegisterClassMap<T>();
   }
 }

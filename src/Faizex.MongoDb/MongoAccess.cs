@@ -1,4 +1,5 @@
-﻿using MongoDB.Driver;
+﻿using MongoDB.Bson.Serialization;
+using MongoDB.Driver;
 
 namespace Faizex.MongoDb
 {
@@ -37,6 +38,16 @@ namespace Faizex.MongoDb
     public IMongoProvider<T> Provider<T>(string collectionName) where T : IMongoDocument
     {
       return new MongoProvider<T>(Database.GetCollection<T>(collectionName));
+    }
+
+    /// <summary>
+    /// Creates and registers a class map.
+    /// </summary>
+    /// <typeparam name="T">The class to register.</typeparam>
+    public void RegisterClassMap<T>()
+    {
+      if (!BsonClassMap.IsClassMapRegistered(typeof(T)))
+        BsonClassMap.RegisterClassMap<T>();
     }
   }
 }
